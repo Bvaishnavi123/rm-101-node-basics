@@ -19,7 +19,7 @@ app.post('/users',async(req,res)=>{
         const user = await User.create(req.body)
         return res.status(201).send(user)
     } catch (error) {
-        return res.status(500).send(error)
+        return res.status(404).send(error)
     }
 })
 app.get('/users/:id',async(req,res)=>{
@@ -36,7 +36,7 @@ app.get('/users/:id',async(req,res)=>{
         const user = await User.find(req.params.id).lean().exec()
         return res.status(201).send(user)
     } catch (error) {
-        return res.status(500).send(error)
+        return res.status(400).send(error)
     }
 })
 app.get('/users',async(req,res)=>{
@@ -48,13 +48,6 @@ app.get('/users',async(req,res)=>{
     }
 })
 
-// app.listen('8080',async()=>{
-//     try {
-//         console.log('listening On port 8000')
-//     } catch (error) {
-//         console.log(error)
-//     }
-// })
 // Note: Do not remove this export statement
 
 module.exports = app;
